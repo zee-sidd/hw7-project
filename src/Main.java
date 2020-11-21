@@ -1,3 +1,7 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -50,26 +54,48 @@ public class Main extends Application implements Initializable {
     final ObservableList<String> yearData = FXCollections.observableArrayList();
     final ObservableList<String> importanceData = FXCollections.observableArrayList();
 
+    //Global Variables
+    public static String date;
+    public static float userSpecifiedTime;
+
+    //Global Constant Variables
+    public final int sleepingHours = 8;
+    public final int eatingHours = 2;
+
+    public static void main(String[] args) {
+        // Launches the GUI application
+        launch(args);
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDateTime now = LocalDateTime.now();
+        date = dtf.format(now); //Sets the Date to what it is on the time of running the program
+        //TEST ------------------------------------------------------------------
+
+        //Creating a tasks
+        ArrayList<Task> tasks = new ArrayList<>();
+        tasks.add(new Task("Test Task 1", "Very Important", "2020/11/22", date));
+        tasks.add(new Task("Test Task 2", "Not Very Important", "2020/11/29", date));
+        tasks.add(new Task("Test Task 3", "Somewhat Important", "2020/11/21", date));
+
+        //Finding Total amount of importance
+        double totalImportance = 0;
+        //TEST ------------------------------------------------------------------
+    }
 
     // Creates and loads the stage and scene for the GUI application
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("inputPage.fxml"));
         primaryStage.setTitle("Welcome to APP NAME!");
         primaryStage.setScene(new Scene(root, 650, 400));   // Creates and sets the size of the scene.
         primaryStage.show();
     }
 
-    public static void main(String[] args) {
-        // Launches the GUI application
-        launch(args);
-        System.out.println("Hello World");
-    }
-
     @Override
     // initialize function creates anew Image instances for each flower image object.
     // The file paths are sent as arguments to load the images.
-    public void initialize(URL url, ResourceBundle rb) { }
+    public void initialize(URL url, ResourceBundle rb) {
+    }
 
 
     public void createComboBoxData() {
@@ -88,5 +114,6 @@ public class Main extends Application implements Initializable {
         }
         return list;
     }
+
 
 }
