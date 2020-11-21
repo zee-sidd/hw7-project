@@ -7,23 +7,62 @@ public class Task {
     private String taskName;
     private String importance;
     private Color colorObject;
-    private String completionDate;
-    private String date;
-    private double time;
+    private String dueDate;
+    private String date; //Current Date
+    private double time; //Amount of time to spend on the task
+    private double relativeImportance; //A number based on the product of importance and due date
 
     //Constructor
-    public Task (String taskName, String importance, String completionDate, String date){
-        taskName = taskName;
-        importance = importance;
-        completionDate = completionDate;
-        date = date;
+    public Task (String taskName, String importance, String dueDate, String date){
+        this.taskName = taskName;
+        this.importance = importance;
+        this.dueDate = dueDate;
+        this.date = date;
     }
 
     //Getter and Setters
     public String getTaskName() {return this.taskName;}
     public double getTime() {return this.time;}
+    public double getRelativeImportance() {return this.relativeImportance;}
 
-    //Helper Methods
+    public void setColorObject (Color color) {this.colorObject = color;}
+    public void setTime (double value) {this.time = value;}
 
+    //Evaluating Numerical Importance
+    private void howImportant () {
 
+        int amountOfDaysDue = Integer.parseInt(dueDate.replace("/","")) - Integer.parseInt(date.replace("/","")); //How many days it is due in
+        double importanceDate = 0; //Multiplier for relative importance based on due date
+        double importanceUser = 0; //Multiplier for relative importance based on how worried the user feels about the task
+
+        //Determining importance based on due date
+        if (amountOfDaysDue < 2) {importanceDate = 10;}
+        else if (amountOfDaysDue == 3) {importanceDate = 5;}
+        else if (amountOfDaysDue == 4) {importanceDate = 2;}
+        else if (amountOfDaysDue == 5) {importanceDate = 1;}
+        else if (amountOfDaysDue == 6) {importanceDate = 0.5;}
+        else {importanceDate = 0.1;}
+
+        //Determining importance based on user input
+        switch (this.importance) {
+
+            case "Not Very Important":
+                importanceUser = 0.1;
+                break;
+            case "Somewhat Important":
+                importanceUser = 0.5;
+                break;
+            case "Important":
+                importanceUser = 1;
+                break;
+            case "Very Important":
+                importanceUser = 5;
+                break;
+            case "Screwed":
+                importanceUser = 10;
+        }
+
+        //Calculating relative importance
+        this.relativeImportance = importanceUser * importanceDate;
+    }
 }
