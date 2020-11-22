@@ -12,8 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="397.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
    <top>
       <Label alignment="CENTER" text="Welcome to {APP NAME}!" textAlignment="CENTER" BorderPane.alignment="CENTER">
          <font>
@@ -25,7 +24,7 @@
       </Label>
    </top>
    <center>
-      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="231.0" prefWidth="513.0" BorderPane.alignment="CENTER">
+      <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="270.0" prefWidth="513.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.66664123535156" minWidth="10.0" prefWidth="139.33329264322916" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="307.9999872843424" minWidth="5.3333740234375" prefWidth="10.0" />
@@ -33,11 +32,11 @@
         </columnConstraints>
         <rowConstraints>
           <RowConstraints maxHeight="68.99999618530273" minHeight="10.0" prefHeight="57.99998982747396" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="68.99999618530273" minHeight="10.0" prefHeight="18.00001017252604" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="152.6666603088379" minHeight="0.0" prefHeight="38.333323160807296" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="226.0" minHeight="10.0" prefHeight="34.33333079020181" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="226.0" minHeight="0.0" prefHeight="40.66667683919272" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="226.0" minHeight="0.0" prefHeight="48.666656494140625" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="68.99999618530273" minHeight="0.3333231608072964" prefHeight="5.666666666666671" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="152.6666603088379" minHeight="0.0" prefHeight="37.333351135253906" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="226.0" minHeight="10.0" prefHeight="42.666646321614564" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="226.0" minHeight="0.0" prefHeight="37.66666666666666" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="226.0" minHeight="0.0" prefHeight="83.66666666666669" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label text="Enter a Task" underline="true" GridPane.rowIndex="2">
@@ -65,24 +64,27 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="269.0" GridPane.columnIndex="2" />
-            <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="269.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <ComboBox prefHeight="25.0" prefWidth="185.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <GridPane GridPane.columnIndex="2" GridPane.rowIndex="5">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
+            <TextField fx:id="nameTextField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="269.0" GridPane.columnIndex="2" />
+            <TextField fx:id="taskNameTextField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="269.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <ComboBox fx:id="importanceLevelsBox" prefHeight="25.0" prefWidth="185.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="89.0" prefWidth="257.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
+               <columnConstraints>
+                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="112.0" minWidth="10.0" prefWidth="47.33333333333333" />
+                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="112.0" minWidth="8.999979654947914" prefWidth="8.999979654947914" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="189.3333536783854" minWidth="10.0" prefWidth="189.3333536783854" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
                <children>
-                  <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="184.0" />
-                  <Label text="  (i.e. MM/DD/YY)" textFill="#7a7a7a" GridPane.columnIndex="1">
-                     <font>
-                        <Font name="System Italic" size="12.0" />
-                     </font>
-                  </Label>
+                  <Label text="Day:" />
+                  <Label prefHeight="17.0" prefWidth="41.0" text="Month:" GridPane.rowIndex="1" />
+                  <Label text="Year:" GridPane.rowIndex="2" />
+                  <ComboBox fx:id="dayBox" prefHeight="25.0" prefWidth="92.0" GridPane.columnIndex="2" />
+                  <ComboBox fx:id="monthBox" prefHeight="25.0" prefWidth="92.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="yearBox" prefHeight="25.0" prefWidth="92.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                </children>
             </GridPane>
          </children>

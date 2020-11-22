@@ -1,29 +1,20 @@
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-// Import necessary java and javafx packages.
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
-public class Main extends Application implements Initializable {
+
+public class Main extends Application {
     @FXML
     TextField nameTextField;
 
@@ -79,6 +70,16 @@ public class Main extends Application implements Initializable {
 
         //Finding Total amount of importance
         double totalImportance = 0;
+        for (Task task : tasks) {
+            totalImportance += task.howImportant();
+            System.out.println(task.howImportant());
+        }
+        System.out.println(totalImportance);
+        //Setting relative importance for each task
+        for (Task task : tasks) {
+            task.setRelativeImportance(task.howImportant()/totalImportance);
+            System.out.println (task.getRelativeImportance());
+        }
         //TEST ------------------------------------------------------------------
     }
 
@@ -86,34 +87,10 @@ public class Main extends Application implements Initializable {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("inputPage.fxml"));
+//        createComboBoxData();
         primaryStage.setTitle("Welcome to APP NAME!");
-        primaryStage.setScene(new Scene(root, 650, 400));   // Creates and sets the size of the scene.
+        primaryStage.setScene(new Scene(root, 600, 450));   // Creates and sets the size of the scene.
         primaryStage.show();
     }
-
-    @Override
-    // initialize function creates anew Image instances for each flower image object.
-    // The file paths are sent as arguments to load the images.
-    public void initialize(URL url, ResourceBundle rb) {
-    }
-
-
-    public void createComboBoxData() {
-        // Here we add data to the ObservableList which represents menu items in combo boxes.
-        daysData.addAll(createNumberList(1, 31));
-        monthData.addAll(createNumberList(1, 12));
-        yearData.addAll(createNumberList(2020, 2030));
-        importanceData.addAll("");
-    }
-
-    //This function creates a list with number randing from parameters start to end.
-    public ObservableList<String> createNumberList(int start, int end) {
-        ObservableList<String> list = FXCollections.observableArrayList();
-        for (int i = start; i <= end; i++) {
-            list.add(Integer.toString(i));
-        }
-        return list;
-    }
-
 
 }
