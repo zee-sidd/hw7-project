@@ -57,6 +57,10 @@ public class Warning implements ActionListener{
 
     }
 
+    public static void main(String args[]){
+        Warning Rethink = new Warning();
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == nah){
