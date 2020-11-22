@@ -1,4 +1,3 @@
-import javafx.beans.property.DoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -149,7 +148,7 @@ public class MainController implements Initializable {
                     }
                     for (Task task : tasks) { //Assigns Relative Importance based on other tasks and assigns time(minutes)
                         task.setRelativeImportance(task.howImportant() / totalImportance);
-                        task.setTime(task.getRelativeImportance() * 840); //How many minutes to allocate 840 is the available time (24h - sleep - eat - user specified)
+                        task.setTime(task.getRelativeImportance() * (24*60 - eatingHours*60 - sleepingHours*60 - userSpecifiedTime*60)); //How many minutes to allocate 840 is the available time (24h - sleep - eat - user specified)
                     }
 
                     if (!tasks.isEmpty()) {
