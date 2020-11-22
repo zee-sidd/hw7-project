@@ -3,19 +3,21 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class Notification {
+public class Notification implements ActionListener{
 
     JFrame f;
     JLabel l1;
 
     JLabel background;
-
+    JButton b;
 
     Notification(){
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 
         f = new JFrame("Notification");
         f.setSize(350,350);
+        Container c = f.getContentPane();
+        c.setBackground(Color.pink);
 
 
 
@@ -24,23 +26,29 @@ public class Notification {
         int y = (int) ((dimension.getHeight() - f.getHeight())/2);
         f. setLocation(x,y);
 
-        ImageIcon img = new ImageIcon("testing.jpg");
+        ImageIcon img = new ImageIcon("background.jpg");
         background = new JLabel("", img, JLabel.CENTER);
-        background.setBounds(0,0,250,250);
-        f.add(background);
+        background.setBounds(25,25,25,25);
 
 
-        JButton b = new JButton("Click to start 5 minutes break!");
+        b = new JButton("Click to start 5 minutes break!");
         b.setBorder(null);
-        b.setBounds(60, 200,200,50);
+        b.setBounds(60, 190,200,50);
         f.add(b);
         //Adding a button
+
+        JButton no = new JButton("Click to continue studying!");
+        no.setBorder(null);
+        no.setBounds(60, 250,200,50);
+        f.add(no);
 
 
         l1=new JLabel("Great Job on working for 30 minutes!!!");
         l1.setBounds(50,50, 300,30);
         f.add(l1);
         //Label
+
+        b.addActionListener(this);
 
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setLayout(null);
@@ -52,5 +60,12 @@ public class Notification {
 
     public static void main(String args[]){
         Notification f = new Notification();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == b){
+            Short_break snack = new Short_break();
+        }
     }
 }
