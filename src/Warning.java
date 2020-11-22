@@ -15,10 +15,10 @@ public class Warning implements ActionListener{
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 
         Rethink = new JFrame();
-        Rethink.setSize(700, 700);
+        Rethink.setSize(400, 400);
         Rethink.setLayout(null);
         Container c = Rethink.getContentPane();
-        c.setBackground(Color.cyan);
+        c.setBackground(Color.GRAY);
 
         int x = (int) ((dimension.getWidth() -Rethink.getWidth())/2);
         int y = (int) ((dimension.getHeight() - Rethink.getHeight())/2);
@@ -29,18 +29,18 @@ public class Warning implements ActionListener{
 
         nah = new JButton("No");
         nah.setBorder(null);
-        nah.setBounds(60, 190,200,50);
+        nah.setBounds(90, 240,200,50);
         Rethink.add(nah);
 
         yay = new JButton("Yes");
         yay.setBorder(null);
-        yay.setBounds(60, 190,200,50);
+        yay.setBounds(90, 190,200,50);
         Rethink.add(yay);
 
 
-        xx=new JLabel("According to recent \nstudies, it is recommended \nto take short breaks every 30 minutes! Are you sure you don't want to take a break?");
-        xx.setBounds(50,50, 600,30);
-        xx.setFont(new Font("Serif", Font.BOLD, 25));
+        xx=new JLabel("According to recent studies, it is recommended to take short breaks every 30 minutes! Are you sure you don't want to take a break?");
+        xx.setBounds(10,0, 350,100);
+        xx.setFont(new Font("Serif", Font.BOLD, 15));
         xx.setForeground(Color.GREEN);
         Rethink.add(xx);
 
