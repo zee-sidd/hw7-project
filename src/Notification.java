@@ -14,7 +14,7 @@ public class Notification {
   f = new JFrame("Notification");
   text = new JLabel("Good job working hard for 30 minutes!!");
 
-  JButton b = new JButton("Click to start 5 minutes break!",new ImageIcon());
+  JButton b = new JButton("Click to start 5 minutes break!");
   f.add(b);
   f.add(text);
   f.setSize(350,350);
