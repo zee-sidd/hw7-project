@@ -64,8 +64,8 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="269.0" GridPane.columnIndex="2" />
-            <TextField maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="269.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <TextField fx:id="nameTextField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="269.0" GridPane.columnIndex="2" />
+            <TextField fx:id="taskNameTextField" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="269.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <ComboBox fx:id="importanceLevelsBox" prefHeight="25.0" prefWidth="185.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
             <GridPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="89.0" prefWidth="257.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
                <columnConstraints>

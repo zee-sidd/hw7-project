@@ -1,14 +1,50 @@
+import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
 public class Main extends Application {
+    @FXML
+    TextField nameTextField;
+
+    @FXML
+    TextField taskNameTextField;
+
+    @FXML
+    TextField completionDateTextField;
+
+    @FXML
+    ComboBox<String> importanceLevelsBox;
+
+    // Combo box with days for date of birth (from 1 to 31)
+    @FXML
+    ComboBox<String> dayBox;
+
+    // Combo box with months (numbers; 1 to 12) for date of birth
+    @FXML
+    ComboBox<String> monthBox;
+
+    // Combo box with years (numbers; 1 to 12) for date of birth
+    @FXML
+    ComboBox<String> yearBox;
+
+    // These data variables are used to populate the ComboBoxs for days, months, years, and importance level.
+    final ObservableList<String> daysData = FXCollections.observableArrayList();
+    final ObservableList<String> monthData = FXCollections.observableArrayList();
+    final ObservableList<String> yearData = FXCollections.observableArrayList();
+    final ObservableList<String> importanceData = FXCollections.observableArrayList();
+
     //Global Variables
     public static String date;
     public static float userSpecifiedTime;
@@ -34,6 +70,16 @@ public class Main extends Application {
 
         //Finding Total amount of importance
         double totalImportance = 0;
+        for (Task task : tasks) {
+            totalImportance += task.howImportant();
+            System.out.println(task.howImportant());
+        }
+        System.out.println(totalImportance);
+        //Setting relative importance for each task
+        for (Task task : tasks) {
+            task.setRelativeImportance(task.howImportant()/totalImportance);
+            System.out.println (task.getRelativeImportance());
+        }
         //TEST ------------------------------------------------------------------
     }
 
@@ -46,4 +92,5 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 600, 450));   // Creates and sets the size of the scene.
         primaryStage.show();
     }
+
 }
