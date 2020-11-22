@@ -1,19 +1,19 @@
+import javax.swing.*;
+public class Short extends JFrame{
+    public Short() {
+        JSlider slider = new JSlider(JSlider.HORIZONTAL, 0, 5, 1);
+        slider.setMinorTickSpacing(1);
+        slider.setMajorTickSpacing(5);
+        slider.setPaintTicks(true);
+        slider.setPaintLabels(true);
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-public class  Short{
-    Short(){
-        JFrame f=new JFrame("Button Example");
-        JButton b=new JButton("Play", new ImageIcon("play.png"));
-        b.setBounds(100,100,140, 40);
-        f.add(b);
-        f.setSize(300,400);
-        f.setLayout(null);
-        f.setVisible(true);
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JPanel panel=new JPanel();
+        panel.add(slider);
+        add(panel);
     }
-    public static void main(String[] args) {
-        new Short();
+    public static void main(String s[]) {
+        Short frame=new Short();
+        frame.pack();
+        frame.setVisible(true);
     }
 }
