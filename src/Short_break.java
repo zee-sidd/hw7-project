@@ -18,7 +18,7 @@ public class Short_break {
         int y = (int) ((dimension.getHeight() - snack.getHeight())/2);
         snack. setLocation(x,y);
 
-        snack.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        snack.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         snack.setVisible(true);
 
         DefaultListModel<String> l1 = new DefaultListModel<>();
@@ -38,7 +38,6 @@ public class Short_break {
         JList<String> list = new JList<>(l1);
         list.setBounds(250,300, 150,225);
         snack.add(list);
-
 
         grab_snack=new JLabel("Go grab a cup of water or eat some snacks!!");
         grab_snack.setBounds(100,50, 600,30);

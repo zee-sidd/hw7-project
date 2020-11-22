@@ -46,11 +46,8 @@ public class ScheduleController extends MainController implements Initializable 
         }
         scheduleTable.getItems().addAll(rowEntries);
     }
-
-
     @FXML
     public void completedATask() {
         Notification n = new Notification();
     }
-
 }

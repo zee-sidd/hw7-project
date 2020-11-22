@@ -40,7 +40,7 @@ public class Notification implements ActionListener{
         no.setBounds(60, 250,200,50);
         f.add(no);
 
-        l1=new JLabel("Great Job on working for 30 minutes!!!");
+        l1=new JLabel("Great Job on Completing The Task!");
         l1.setBounds(50,50, 300,30);
         f.add(l1);
         //Label
@@ -48,10 +48,9 @@ public class Notification implements ActionListener{
         b.addActionListener(this);
         no.addActionListener(this);
 
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         f.setLayout(null);
         f.setVisible(true);
-
     }
     public static void main(String args[]){
         Notification f = new Notification();
