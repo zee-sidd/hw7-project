@@ -36,8 +36,8 @@ public class Task {
         double importanceUser; //Multiplier for relative importance based on how worried the user feels about the task
 
         //Determining importance based on due date
-        if (amountOfDaysDue < 2) {importanceDate = 10;}
-        else if (amountOfDaysDue == 3) {importanceDate = 5;}
+        if (amountOfDaysDue < 2) {importanceDate = 5;}
+        else if (amountOfDaysDue == 3) {importanceDate = 3;}
         else if (amountOfDaysDue == 4) {importanceDate = 2;}
         else if (amountOfDaysDue == 5) {importanceDate = 1;}
         else if (amountOfDaysDue == 6) {importanceDate = 0.5;}
@@ -47,19 +47,19 @@ public class Task {
         switch (this.importance) {
 
             case "Not Very Important":
-                importanceUser = 0.1;
-                break;
-            case "Somewhat Important":
                 importanceUser = 0.5;
                 break;
-            case "Important":
+            case "Somewhat Important":
                 importanceUser = 1;
                 break;
+            case "Important":
+                importanceUser = 2;
+                break;
             case "Very Important":
-                importanceUser = 5;
+                importanceUser = 3;
                 break;
             default:
-                importanceUser = 10;
+                importanceUser = 5;
         }
 
         //Calculating importance

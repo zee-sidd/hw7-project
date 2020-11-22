@@ -26,7 +26,6 @@ public class ScheduleController extends MainController implements Initializable 
         scheduleTable.getColumns().addAll(timesColumn, taskColumn);
         ObservableList<Map<String, Object>> items = FXCollections.<Map<String, Object>>observableArrayList();
 
-
         // Test
         for (Task task : tasks) {
             Map<String, Object> item1 = new HashMap<>();
