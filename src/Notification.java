@@ -1,3 +1,5 @@
+import javafx.scene.image.Image;
+
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
@@ -7,11 +9,14 @@ public class Notification {
     JFrame f;
     JLabel text;
 
-    Notification(){
 
+
+
+    Notification(){
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 
   f = new JFrame("Notification");
+  JLabel background;
   text = new JLabel("Good job working hard for 30 minutes!!");
 
   JButton b = new JButton("Click to start 5 minutes break!");
@@ -25,9 +30,11 @@ public class Notification {
   int y = (int) ((dimension.getHeight() - f.getHeight())/2);
   f. setLocation(x,y);
 
+  ImageIcon img = new ImageIcon("testing.jpg");
+  background = new JLabel("", img, JLabel.CENTER);
+  background.setBounds(0,0,350,350);
+  f.add(background);
 
-
-  b.setBackground(Color.green);
   b.setBorder(null);
 
   b.setBounds(100, 100,200,50);
