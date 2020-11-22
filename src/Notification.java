@@ -14,10 +14,10 @@ public class Notification {
   f = new JFrame("Notification");
   text = new JLabel("Good job working hard for 30 minutes!!");
 
-  JButton b = new JButton("Click to start 5 minutes break!");
+  JButton b = new JButton("Click to start 5 minutes break!",new ImageIcon());
   f.add(b);
   f.add(text);
-  f.setSize(400,400);
+  f.setSize(350,350);
   f.setLayout(null);
   f.setVisible(true);
 
@@ -30,7 +30,9 @@ public class Notification {
   b.setBackground(Color.green);
   b.setBorder(null);
 
-  b.setBounds(130,130,200,50);
+  b.setBounds(100, 100,200,50);
+
+  f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }
     public static void main(String args[]){
