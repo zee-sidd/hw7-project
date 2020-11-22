@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.util.Date;
 
 //Object to handle user inputted task
 public class Task {
@@ -27,13 +26,14 @@ public class Task {
 
     public void setColorObject (Color color) {this.colorObject = color;}
     public void setTime (double value) {this.time = value;}
+    public void setRelativeImportance (double val) {this.relativeImportance = val;}
 
     //Evaluating Numerical Importance
-    private void howImportant () {
+    public double howImportant () {
 
         int amountOfDaysDue = Integer.parseInt(dueDate.replace("/","")) - Integer.parseInt(date.replace("/","")); //How many days it is due in
-        double importanceDate = 0; //Multiplier for relative importance based on due date
-        double importanceUser = 0; //Multiplier for relative importance based on how worried the user feels about the task
+        double importanceDate; //Multiplier for relative importance based on due date
+        double importanceUser; //Multiplier for relative importance based on how worried the user feels about the task
 
         //Determining importance based on due date
         if (amountOfDaysDue < 2) {importanceDate = 10;}
@@ -58,11 +58,11 @@ public class Task {
             case "Very Important":
                 importanceUser = 5;
                 break;
-            case "Screwed":
+            default:
                 importanceUser = 10;
         }
 
-        //Calculating relative importance
-        this.relativeImportance = importanceUser * importanceDate;
+        //Calculating importance
+        return importanceUser * importanceDate;
     }
 }
