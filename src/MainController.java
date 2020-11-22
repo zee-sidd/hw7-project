@@ -3,6 +3,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
@@ -10,6 +12,7 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.stage.Stage;
 
 public class MainController implements Initializable {
     @FXML
@@ -33,6 +36,9 @@ public class MainController implements Initializable {
     @FXML
     ComboBox<String> yearBox;
 
+    @FXML
+    Button submitButton;
+
     // These data variables are used to populate the ComboBoxes for days, months, years, and importance level.
     final ObservableList<String> daysData = FXCollections.observableArrayList();
     final ObservableList<String> monthData = FXCollections.observableArrayList();
@@ -52,8 +58,15 @@ public class MainController implements Initializable {
 
     @FXML
     public void schedule() throws Exception {
+        Stage currentStage = (Stage) nameTextField.getScene().getWindow();
+        currentStage.close();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("schedule.fxml"));
-        Parent schedule = (Parent) fxmlLoader.load();
+        Parent schedule = fxmlLoader.load();
+        Scene scene = new Scene(schedule);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.setTitle("Schedule");
+        stage.show();
     }
 
 
