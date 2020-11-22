@@ -2,6 +2,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.MapValueFactory;
@@ -15,8 +17,16 @@ public class ScheduleController extends MainController implements Initializable 
     @FXML
     TableView scheduleTable;
 
+    @FXML
+    Button completedATaskButton;
+
+    @FXML
+    Label headerLabel;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        headerLabel.setText(userName + ", here is your schedule!");
+
         TableColumn<Map, String> timesColumn = new TableColumn<>("Amount of Time You Should Spend");
         timesColumn.setCellValueFactory(new MapValueFactory<>("Amount of Time You Should Spend"));
 
@@ -36,4 +46,11 @@ public class ScheduleController extends MainController implements Initializable 
         }
         scheduleTable.getItems().addAll(rowEntries);
     }
+
+
+    @FXML
+    public void completedATask() {
+        Notification n = new Notification();
+    }
+
 }
