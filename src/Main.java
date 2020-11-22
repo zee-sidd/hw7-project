@@ -89,7 +89,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("inputPage.fxml"));
 //        createComboBoxData();
         primaryStage.setTitle("Welcome to APP NAME!");
-        primaryStage.setScene(new Scene(root, 600, 450));   // Creates and sets the size of the scene.
+        primaryStage.setScene(new Scene(root, 600, 479));   // Creates and sets the size of the scene.
         primaryStage.show();
     }
 
