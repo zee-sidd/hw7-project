@@ -20,9 +20,6 @@ public class Notification implements ActionListener{
         Container c = f.getContentPane();
         c.setBackground(Color.pink);
 
-
-
-
         int x = (int) ((dimension.getWidth() -f.getWidth())/2);
         int y = (int) ((dimension.getHeight() - f.getHeight())/2);
         f. setLocation(x,y);
@@ -30,7 +27,6 @@ public class Notification implements ActionListener{
         ImageIcon img = new ImageIcon("background.jpg");
         background = new JLabel("", img, JLabel.CENTER);
         background.setBounds(25,25,25,25);
-
 
         b = new JButton("Click to start 5 minutes break!");
         b.setBorder(null);
@@ -43,13 +39,13 @@ public class Notification implements ActionListener{
         no.setBounds(60, 250,200,50);
         f.add(no);
 
-
         l1=new JLabel("Great Job on working for 30 minutes!!!");
         l1.setBounds(50,50, 300,30);
         f.add(l1);
         //Label
 
         b.addActionListener(this);
+        no.addActionListener(this);
 
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setLayout(null);

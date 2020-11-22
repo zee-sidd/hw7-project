@@ -37,6 +37,9 @@ public class Warning implements ActionListener{
         yay.setBounds(90, 190,200,50);
         Rethink.add(yay);
 
+        nah.addActionListener(this);
+        yay.addActionListener(this);
+
 
         xx=new JLabel("According to recent studies, it is recommended to take short breaks every 30 minutes! Are you sure you don't want to take a break?");
         xx.setBounds(10,0, 350,100);
