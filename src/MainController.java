@@ -1,5 +1,6 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -8,15 +9,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
-// Import necessary java and javafx packages.
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import javafx.fxml.FXML;
-import javafx.stage.Stage;
+
+// Import necessary java and javafx packages.
 
 public class MainController implements Initializable {
     @FXML
@@ -55,7 +56,7 @@ public class MainController implements Initializable {
     final ObservableList<String> yearData = FXCollections.observableArrayList();
     final ObservableList<String> importanceData = FXCollections.observableArrayList();
 
-    ArrayList<Task> tasks = new ArrayList<>();
+    public static ArrayList<Task> tasks = new ArrayList<>();
 
     //Global Variables
     public String date;
@@ -90,10 +91,10 @@ public class MainController implements Initializable {
             if (!taskName.isEmpty() && !importance.isEmpty() && !yearBox.getValue().isEmpty() && !monthBox.getValue().isEmpty() && !dayBox.getValue().isEmpty()) {
                 tasks.add(new Task(taskName, importance, dueDate, date));
 
-                for (int i = 0; i < tasks.size(); i++) {
+                /*for (int i = 0; i < tasks.size(); i++) {
                     System.out.println("Task Name: " + tasks.get(i).getTaskName());
                 }
-                System.out.println();
+                System.out.println(); */
 
                 message.setText("Successfully added a task with name: " + taskName);
 
@@ -114,6 +115,18 @@ public class MainController implements Initializable {
 
     @FXML
     public void submit() throws Exception {
+
+        double totalImportance = 0;
+
+        //Determining Allotted Time
+        for (Task task : tasks) {
+            totalImportance += task.howImportant();
+        }
+        for (Task task : tasks) { //Assigns Relative Importance based on other tasks and assigns time(minutes)
+            task.setRelativeImportance(task.howImportant()/totalImportance);
+            task.setTime(task.getRelativeImportance()*840); //How many minutes to allocate 840 is the available time (24h - sleep - eat - user specified)
+        }
+
         if (!tasks.isEmpty()) {
             Stage currentStage = (Stage) nameTextField.getScene().getWindow();
             currentStage.close();
@@ -129,7 +142,6 @@ public class MainController implements Initializable {
             message.setText("Error: Please add at least one task before submitting!");
         }
     }
-
 
     public void createComboBoxData() {
         // Here we add data to the ObservableList which represents menu items in combo boxes.
@@ -147,6 +159,5 @@ public class MainController implements Initializable {
         }
         return list;
     }
-
 }
 
