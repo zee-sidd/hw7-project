@@ -1,3 +1,4 @@
+import javafx.beans.property.DoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -25,6 +26,15 @@ public class MainController implements Initializable {
 
     @FXML
     TextField taskNameTextField;
+
+    @FXML
+    TextField sleepHoursTextField;
+
+    @FXML
+    TextField eatHoursTextField;
+
+    @FXML
+    TextField specifiedTimeTextField;
 
     @FXML
     ComboBox<String> importanceLevelsBox;
@@ -60,11 +70,10 @@ public class MainController implements Initializable {
 
     //Global Variables
     public String date;
-    public float userSpecifiedTime;
-
-    //Global Constant Variables
-    public final int sleepingHours = 8;
-    public final int eatingHours = 2;
+    public static double userSpecifiedTime;
+    public static double sleepingHours;
+    public static double eatingHours;
+    public static String userName;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -89,20 +98,27 @@ public class MainController implements Initializable {
 
         try {
             if (!taskName.isEmpty() && !importance.isEmpty() && !yearBox.getValue().isEmpty() && !monthBox.getValue().isEmpty() && !dayBox.getValue().isEmpty()) {
-                tasks.add(new Task(taskName, importance, dueDate, date));
 
-                /*for (int i = 0; i < tasks.size(); i++) {
-                    System.out.println("Task Name: " + tasks.get(i).getTaskName());
+                // Get date info and convert them to integers.
+                int dueDateInteger = Integer.parseInt(yearBox.getValue() + monthBox.getValue() +  dayBox.getValue());
+                DateTimeFormatter dtfForTest = DateTimeFormatter.ofPattern("yyyyMMdd");
+                LocalDateTime currentDate = LocalDateTime.now();
+                int currentDateInteger = Integer.parseInt(dtfForTest.format(currentDate));
+
+                if (dueDateInteger >= currentDateInteger) {
+                    tasks.add(new Task(taskName, importance, dueDate, date));
+
+                    message.setText("Successfully added a task with name: " + taskName);
+
+                    taskNameTextField.setText("");
+                    importanceLevelsBox.setValue("");
+                    yearBox.setValue("");
+                    monthBox.setValue("");
+                    dayBox.setValue("");
                 }
-                System.out.println(); */
-
-                message.setText("Successfully added a task with name: " + taskName);
-
-                taskNameTextField.setText("");
-                importanceLevelsBox.setValue("");
-                yearBox.setValue("");
-                monthBox.setValue("");
-                dayBox.setValue("");
+                else {
+                    message.setText("Error: Please choose a date starting today and on.");
+                }
             } else {
                 message.setText("Error: Please ensure that all text fields are entered before you add a task!");
             }
@@ -116,31 +132,51 @@ public class MainController implements Initializable {
     @FXML
     public void submit() throws Exception {
 
-        double totalImportance = 0;
+        try {
+            userName = nameTextField.getText().trim();
+            userSpecifiedTime = Double.parseDouble(specifiedTimeTextField.getText());
+            eatingHours = Double.parseDouble(eatHoursTextField.getText());
+            sleepingHours = Double.parseDouble(sleepHoursTextField.getText());
 
-        //Determining Allotted Time
-        for (Task task : tasks) {
-            totalImportance += task.howImportant();
+            if (!userName.isEmpty()) {
+
+                if ((userSpecifiedTime + eatingHours + sleepingHours) <= 24) {
+                    double totalImportance = 0;
+
+                    //Determining Allotted Time
+                    for (Task task : tasks) {
+                        totalImportance += task.howImportant();
+                    }
+                    for (Task task : tasks) { //Assigns Relative Importance based on other tasks and assigns time(minutes)
+                        task.setRelativeImportance(task.howImportant() / totalImportance);
+                        task.setTime(task.getRelativeImportance() * 840); //How many minutes to allocate 840 is the available time (24h - sleep - eat - user specified)
+                    }
+
+                    if (!tasks.isEmpty()) {
+                        Stage currentStage = (Stage) nameTextField.getScene().getWindow();
+                        currentStage.close();
+                        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("schedule.fxml"));
+                        Parent schedule = fxmlLoader.load();
+                        Scene scene = new Scene(schedule);
+                        Stage stage = new Stage();
+                        stage.setScene(scene);
+                        stage.setTitle("Schedule");
+                        stage.show();
+                    } else {
+                        message.setText("Error: Please add at least one task before submitting!");
+                    }
+                }
+                else {
+                    message.setText("Please ensure that presonal information times do not add up to 24 hours.");
+                }
+            } else {
+                message.setText("Please enter your name.");
+            }
         }
-        for (Task task : tasks) { //Assigns Relative Importance based on other tasks and assigns time(minutes)
-            task.setRelativeImportance(task.howImportant()/totalImportance);
-            task.setTime(task.getRelativeImportance()*840); //How many minutes to allocate 840 is the available time (24h - sleep - eat - user specified)
+        catch (Exception e) {
+            message.setText("Error: Please ensure that your name and personal information is all filled out.");
         }
 
-        if (!tasks.isEmpty()) {
-            Stage currentStage = (Stage) nameTextField.getScene().getWindow();
-            currentStage.close();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("schedule.fxml"));
-            Parent schedule = fxmlLoader.load();
-            Scene scene = new Scene(schedule);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.setTitle("Schedule");
-            stage.show();
-        }
-        else {
-            message.setText("Error: Please add at least one task before submitting!");
-        }
     }
 
     public void createComboBoxData() {

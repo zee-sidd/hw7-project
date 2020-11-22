@@ -17,23 +17,23 @@ public class ScheduleController extends MainController implements Initializable 
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        TableColumn<Map, String> timesColumn = new TableColumn<>("Time");
-        timesColumn.setCellValueFactory(new MapValueFactory<>("Time"));
+        TableColumn<Map, String> timesColumn = new TableColumn<>("Amount of Time You Should Spend");
+        timesColumn.setCellValueFactory(new MapValueFactory<>("Amount of Time You Should Spend"));
 
         TableColumn<Map, String> taskColumn = new TableColumn<>("Task");
-        timesColumn.setCellValueFactory(new MapValueFactory<>("Task"));
+        taskColumn.setCellValueFactory(new MapValueFactory<>("Task"));
 
-        scheduleTable.getColumns().addAll(timesColumn, taskColumn);
-        ObservableList<Map<String, Object>> items = FXCollections.<Map<String, Object>>observableArrayList();
-
+        scheduleTable.getColumns().add(taskColumn);
+        scheduleTable.getColumns().add(timesColumn);
+        ObservableList<Map<String, Object>> rowEntries = FXCollections.<Map<String, Object>>observableArrayList();
 
         // Test
         for (Task task : tasks) {
-            Map<String, Object> item1 = new HashMap<>();
-            item1.put("Time", task.getTime() + " minutes");
-            item1.put("Task", task.getTaskName());
-            items.add(item1);
+            Map<String, Object> rowEntry = new HashMap<>();
+            rowEntry.put("Amount of Time You Should Spend", task.getTime() + " minutes");
+            rowEntry.put("Task", task.getTaskName());
+            rowEntries.add(rowEntry);
         }
-        System.out.println(tasks.size());
+        scheduleTable.getItems().addAll(rowEntries);
     }
 }
