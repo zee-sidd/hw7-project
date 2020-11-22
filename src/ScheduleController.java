@@ -11,12 +11,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-
-public class ScheduleController implements Initializable {
+public class ScheduleController extends MainController implements Initializable {
     @FXML
     TableView scheduleTable;
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -31,15 +28,14 @@ public class ScheduleController implements Initializable {
 
 
         // Test
-        for (int i = 0; i < 10; i++) {
+        for (Task task : tasks) {
             Map<String, Object> item1 = new HashMap<>();
-            item1.put("Time", "8:00AM - 9:00AM");
-            item1.put("Task", "Math Assignment");
+            item1.put("Time", task.getTime() + " minutes");
+            item1.put("Task", task.getTaskName());
             items.add(item1);
         }
 
         scheduleTable.getItems().addAll(items);
     }
-
 
 }
