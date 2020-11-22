@@ -7,6 +7,7 @@ public class Notification implements ActionListener{
 
     JFrame f;
     JLabel l1;
+    JButton no;
 
     JLabel background;
     JButton b;
@@ -37,7 +38,7 @@ public class Notification implements ActionListener{
         f.add(b);
         //Adding a button
 
-        JButton no = new JButton("Click to continue studying!");
+        no = new JButton("Click to continue studying!");
         no.setBorder(null);
         no.setBounds(60, 250,200,50);
         f.add(no);
@@ -66,6 +67,10 @@ public class Notification implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == b){
             Short_break snack = new Short_break();
+        }
+
+        if (e.getSource() == no){
+            Warning Rethink = new Warning();
         }
     }
 }
