@@ -99,7 +99,7 @@ public class MainController implements Initializable {
             if (!taskName.isEmpty() && !importance.isEmpty() && !yearBox.getValue().isEmpty() && !monthBox.getValue().isEmpty() && !dayBox.getValue().isEmpty()) {
 
                 // Get date info and convert them to integers.
-                int dueDateInteger = Integer.parseInt(yearBox.getValue() + monthBox.getValue() +  dayBox.getValue());
+                int dueDateInteger = Integer.parseInt(yearBox.getValue() + monthBox.getValue() + dayBox.getValue());
                 DateTimeFormatter dtfForTest = DateTimeFormatter.ofPattern("yyyyMMdd");
                 LocalDateTime currentDate = LocalDateTime.now();
                 int currentDateInteger = Integer.parseInt(dtfForTest.format(currentDate));
@@ -190,7 +190,12 @@ public class MainController implements Initializable {
     public ObservableList<String> createNumberList(int start, int end) {
         ObservableList<String> list = FXCollections.observableArrayList();
         for (int i = start; i <= end; i++) {
-            list.add(Integer.toString(i));
+            if (Integer.toString(i).length() == 1) {
+                list.add("0" + Integer.toString(i));
+            }
+            else {
+                list.add(Integer.toString(i));
+            }
         }
         return list;
     }
