@@ -1,7 +1,8 @@
 
-import java.awt.*;
 import javax.swing.*;
-import java.awt.event.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Notification implements ActionListener{
 
@@ -51,12 +52,6 @@ public class Notification implements ActionListener{
         f.setLayout(null);
         f.setVisible(true);
 
-    }
-
-
-
-    public static void main(String args[]){
-        Notification f = new Notification();
     }
 
     @Override

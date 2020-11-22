@@ -1,6 +1,7 @@
-import java.awt.*;
 import javax.swing.*;
-import java.awt.event.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Warning implements ActionListener{
 
@@ -54,9 +55,6 @@ public class Warning implements ActionListener{
         textArea.setEditable(false);
         Rethink.add(textArea);
 
-    }
-    public static void main(String args[]){
-        Warning Rethink = new Warning();
     }
 
     @Override
