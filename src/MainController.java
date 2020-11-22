@@ -56,7 +56,7 @@ public class MainController implements Initializable {
     final ObservableList<String> yearData = FXCollections.observableArrayList();
     final ObservableList<String> importanceData = FXCollections.observableArrayList();
 
-    ArrayList<Task> tasks = new ArrayList<>();
+    public static ArrayList<Task> tasks = new ArrayList<>();
 
     //Global Variables
     public String date;
@@ -91,10 +91,10 @@ public class MainController implements Initializable {
             if (!taskName.isEmpty() && !importance.isEmpty() && !yearBox.getValue().isEmpty() && !monthBox.getValue().isEmpty() && !dayBox.getValue().isEmpty()) {
                 tasks.add(new Task(taskName, importance, dueDate, date));
 
-                for (int i = 0; i < tasks.size(); i++) {
+                /*for (int i = 0; i < tasks.size(); i++) {
                     System.out.println("Task Name: " + tasks.get(i).getTaskName());
                 }
-                System.out.println();
+                System.out.println(); */
 
                 message.setText("Successfully added a task with name: " + taskName);
 

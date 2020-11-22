@@ -34,8 +34,6 @@ public class ScheduleController extends MainController implements Initializable 
             item1.put("Task", task.getTaskName());
             items.add(item1);
         }
-
-        scheduleTable.getItems().addAll(items);
+        System.out.println(tasks.size());
     }
-
 }
